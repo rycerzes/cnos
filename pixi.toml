@@ -1,0 +1,43 @@
+[workspace]
+name = "cnos"
+version = "0.1.0"
+description = "CNOS - CAD-based Novel Object Segmentation based on SAM and DINOv2"
+channels = ["https://prefix.dev/conda-forge"]
+platforms = ["linux-64"]
+
+[system-requirements]
+cuda = "12"
+
+[dependencies]
+python = "3.10.*"
+pip = "*"
+pytorch-gpu = "*"
+torchvision = "*"
+
+[pypi-dependencies]
+numpy = "*"
+omegaconf = "*"
+torchmetrics = "*"
+fvcore = "*"
+iopath = "*"
+xformers = "*"
+opencv-python = "*"
+pycocotools = "*"
+matplotlib = "*"
+onnxruntime = "*"
+onnx = "*"
+scipy = "*"
+ffmpeg-python = "*"
+hydra-colorlog = "*"
+hydra-core = "*"
+gdown = "*"
+pytorch-lightning = "*"
+pandas = "*"
+ruamel-yaml = "*"
+pyrender = "*"
+wandb = "*"
+distinctipy = "*"
+hand-tracking-toolkit = { git = "https://github.com/facebookresearch/hand_tracking_toolkit.git" }
+
+[tasks]
+inference = "python run_inference.py"
