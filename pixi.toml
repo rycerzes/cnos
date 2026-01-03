@@ -11,10 +11,11 @@ cuda = "12"
 [dependencies]
 python = "3.10.*"
 pip = "*"
-pytorch-gpu = "*"
-torchvision = "*"
+pillow = ">=8.2.0,<=9.5.0" # versions <10.0.0: load uint16 png as float32, FreeTypeFont API change, etc.
 
 [pypi-dependencies]
+torch = { version = "*", index = "https://download.pytorch.org/whl/cu124" }
+torchvision = { version = "*", index = "https://download.pytorch.org/whl/cu124" }
 numpy = "*"
 omegaconf = "*"
 torchmetrics = "*"
@@ -37,7 +38,18 @@ ruamel-yaml = "*"
 pyrender = "*"
 wandb = "*"
 distinctipy = "*"
+huggingface-hub = "*"
+# SAM - Segment Anything Model
+segment-anything = { git = "https://github.com/facebookresearch/segment-anything.git" }
+# FastSAM
+ultralytics = "*"
+# Hand tracking toolkit
 hand-tracking-toolkit = { git = "https://github.com/facebookresearch/hand_tracking_toolkit.git" }
+# BOP toolkit
+bop-toolkit-lib = { git = "https://github.com/thodan/bop_toolkit.git" }
 
 [tasks]
 inference = "python run_inference.py"
+download-sam = "python -m src.scripts.download_sam"
+download-fastsam = "python -m src.scripts.download_fastsam"
+download-bop-classic = "python -m src.scripts.download_bop_classic"
