@@ -24,7 +24,7 @@ matching_config:
   max_num_instances: 100 # max number of instances to consider, 100 is used in BOP toolkit
 
 onboarding_config:
-  rendering_type: pbr # or pyrender (or onboarding_static or onboarding_dynamic for model-free)
+  rendering_type: pyrender # or pbr (requires train_pbr data) or onboarding_static/onboarding_dynamic for model-free
   reset_descriptors: False
   level_templates: 0 # 0 is coarse, 1 is medium, 2 is dense
 
