@@ -1,9 +1,12 @@
+import os
 import numpy as np
 import trimesh
 
 
 def load_mesh(path, ORIGIN_GEOMETRY="BOUNDS"):
-    mesh = as_mesh(trimesh.load(path))
+    # Explicitly pass file_type based on extension
+    ext = os.path.splitext(path)[1].lower().lstrip(".")
+    mesh = as_mesh(trimesh.load(path, file_type=ext if ext else None))
     if ORIGIN_GEOMETRY == "BOUNDS":
         AABB = mesh.bounds
         center = np.mean(AABB, axis=0)
@@ -17,8 +20,12 @@ def get_bbox_from_mesh(mesh):
     return OBB
 
 
-def get_obj_diameter(mesh_path):
-    mesh = load_mesh(mesh_path)
+def get_obj_diameter(mesh_or_path):
+    # Accept either a path (str) or an already-loaded mesh
+    if isinstance(mesh_or_path, (str, os.PathLike)):
+        mesh = load_mesh(mesh_or_path)
+    else:
+        mesh = mesh_or_path
     extents = mesh.extents * 2
     return np.linalg.norm(extents)
 
